@@ -1,117 +1,124 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Home from './screens/Home';
+
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
+    <NavigationContainer>
+      <StatusBar backgroundColor="#0066CC" />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen 
+          component={Main} name="Main"
+        />
+        <Stack.Screen 
+          component={Home} name="Home"
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+const Main = ({navigation}) => {
+  const handleLogin = () => {
+    navigation.navigate('Home');
+  }
+
+  return (
+  <SafeAreaView style={theme.container}>
+    <View style={theme.logo}>
+      <Ionicons style={theme.logoSvg} name='cube-outline' size={150} />
+      <Text style={theme.logoText}>
+        SupplyBox
       </Text>
     </View>
-  );
-};
+    <View style={theme.form}>
+      <Text style={theme.label}>Correo Eléctronico</Text>
+      <TextInput style={theme.input} placeholder='example@mail.com' />
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+      <Text style={theme.label}>Contraseña</Text>
+      <TextInput style={theme.input} placeholder='Ingresa tu contraseña' />
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+      <TouchableOpacity onPress={handleLogin} style={theme.button}>
+        <Text style={theme.buttonTxt}>Ingresa a tu cuenta</Text>
+        <Ionicons style={theme.buttonSvg} name='arrow-forward-outline' size={30} />
+      </TouchableOpacity>
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+    </View>
+  </SafeAreaView>
+  )
+}
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+
+const theme = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  logo: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  logoSvg: {
+    color: 'black',
   },
-  highlight: {
-    fontWeight: '700',
+  logoText: {
+    textAlign: 'center',
+    fontSize: 25,
+    color: 'black'
   },
+  form: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap:50
+  },
+  input: {
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginBottom: 20,
+  },
+  label: {
+    width:250,
+    marginBottom:5,
+    textAlign:'left',
+  },
+  button: {
+    backgroundColor: 'black',
+    width:250,
+    flex: .2,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+  },
+  buttonTxt: {
+    color: 'white'
+  },
+  buttonSvg: {
+    color: 'white'
+  }
 });
 
 export default App;
