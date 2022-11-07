@@ -11,7 +11,7 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -71,7 +71,7 @@ const theme = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   logo: {
     flex: 1,
