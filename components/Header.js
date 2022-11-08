@@ -16,6 +16,7 @@ const Header = () => {
                     <Text style={theme.logoLoc}>Guadalajara, Jalisco</Text>
                 </View>
             </View>
+            <Ionicons style={theme.cart} name="cart-outline" size={33} />
         </View>
     )
 }
@@ -25,7 +26,10 @@ const theme = StyleSheet.create({
         padding: 20,
         borderBottomColor: '#D9D9D9',
         borderBottomWidth: 3,
-        marginBottom: 20
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'white'
     },
     logo: {
         display: 'flex',
@@ -43,7 +47,10 @@ const theme = StyleSheet.create({
         fontSize: 15
     },
     logoLoc: {
-        fontSize:10
+        fontSize:10,
+    },
+    cart: {
+        color: 'black'
     }
 })
 

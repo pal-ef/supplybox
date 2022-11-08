@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Home from './screens/Home';
+import TabNavigator from './Navigation/TabNavigator';
 
 import {
   SafeAreaView,
@@ -29,7 +30,7 @@ const App = () => {
           component={Main} name="Main"
         />
         <Stack.Screen 
-          component={Home} name="Home"
+          component={TabNavigator} name="Home"
         />
       </Stack.Navigator>
     </NavigationContainer>
